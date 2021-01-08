@@ -1,0 +1,126 @@
+
+launchApp("快手极速版");
+//console.show();
+
+operationRandomTime();
+
+var adolescentModel = text("设置青少年模式");
+var iKnow =  text("我知道了");
+if(adolescentModel.findOne(1000) != null){
+            console.log("设置青少年模式");
+            sleep(1000);
+            iKnow.findOne().click();
+   
+        };
+
+operationRandomTime();
+back();
+operationRandomTime();
+if(id("red_packet").exists()){
+    redPacketBounds = className("android.widget.ImageView").depth(6).id("red_packet").findOne().bounds();
+    
+    click(redPacketBounds.centerX(),redPacketBounds.centerY()); 
+    operationRandomTime();
+    if(text("立即签到").exists()){
+        text("立即签到").click();
+    };
+    operationRandomTime();  
+    if(text("邀请好友赚更多").exists()){
+        back();
+    };
+  
+    operationRandomTime(); 
+    if(text("开宝箱得金币").exists()){
+        var openBoxGetGold = text("开宝箱得金币").findOne().bounds();
+        click(openBoxGetGold.centerX(),openBoxGetGold.centerY());
+        operationRandomTime();
+        if(text("看精彩视频赚更多").exists()){
+            var watchTvGetMore = text("看精彩视频赚更多").findOne().bounds();
+            click(watchTvGetMore.centerX(),watchTvGetMore.centerY());
+            sleep(35000);
+            id("video_close_icon").click(); 
+            operationRandomTime();
+        };
+
+    }
+}
+else if(id("gold_egg_packet").exists() ){
+    goldEggPacket = className("android.widget.ImageView").depth(6).id("gold_egg_packet").findOne().bounds();
+    click(goldEggPacket.centerX(),goldEggPacket.centerY()); 
+    operationRandomTime();
+    if(text("立即签到").exists()){
+        text("立即签到").click();
+    };
+    operationRandomTime();
+    back();
+    operationRandomTime(); 
+    if(text("开宝箱得金币").exists()){
+        var openBoxGetGold = text("开宝箱得金币").findOne().bounds();
+        click(openBoxGetGold.centerX(),openBoxGetGold.centerY());
+        operationRandomTime();
+        if(text("看精彩视频赚更多").exists()){
+            var watchTvGetMore = text("看精彩视频赚更多").findOne().bounds();
+            click(watchTvGetMore.centerX(),watchTvGetMore.centerY());
+            sleep(30000);
+            id("video_close_icon").click(); 
+            operationRandomTime();
+        };
+
+    }
+};
+
+
+
+
+if(className("android.widget.Button").text("福利 领金币").exists()){
+    className("android.widget.Button").text("福利 领金币").click();
+    sleep(32000);
+    className("android.widget.ImageView").id("video_close_icon").click();
+    sleep(3000);
+};
+for (var f = 0;f<10;++f){
+if(className("android.widget.Button").text("福利").exists()){
+    className("android.widget.Button").text("福利").click();
+    sleep(32000);
+    className("android.widget.ImageView").id("video_close_icon").click();
+    sleep(3000);
+};
+};
+
+
+
+
+
+
+for (var i = 0;i<10;++i)
+{   if(className("android.widget.Button").text("看直播").exists()){
+    if(i>0){
+        swipe(500,500,500,900,500);
+        swipe(500,500,500,900,500);
+    };
+ 
+    className("android.widget.Button").text("看直播").findOnce(1).click();
+    sleep(35000);
+    if(className("android.widget.ImageView").id("live_close_place_holder").exists()){
+        var liveCloseIcon = className("android.widget.ImageView").id("live_close_place_holder").findOne().bounds();
+        click(liveCloseIcon.centerX(),liveCloseIcon.centerY());
+    };
+    if(className("android.widget.ImageView").id("live_close").exists()){
+        var liveCloseIcon1 = className("android.widget.ImageView").id("live_close").findOne().bounds();
+        click(liveCloseIcon1.centerX(),liveCloseIcon1.centerY());
+    };
+    sleep(2000);
+    if(text("退出").exists()){
+        text("退出").click();
+        sleep(2000);
+    };
+};
+    
+};
+
+
+
+
+function operationRandomTime() {
+    sleep(random(3000, 5000))
+};
