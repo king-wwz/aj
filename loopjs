@@ -1,0 +1,221 @@
+
+var ttExecCount = 30
+for (var tti = 0; tti < ttExecCount; ++tti) {
+    if (!device.isScreenOn()) {
+        device.wakeup();
+        sleep(1000);
+    };
+
+    launchApp("今日头条极速版");
+    operationRandomTime();
+
+    if (id("a4x").exists()) {
+        id("a4x").click();
+
+    } else {
+        back();
+    };
+
+    sleep(2000);
+
+    if (!className("android.widget.ImageView").id("a3l").exists()) {
+        back();
+    };
+
+    sleep(2000);
+    operationRandomTime();
+
+    if (className("android.widget.ImageView").id("a3l").exists()) {
+        var ttRedPacket = className("android.widget.ImageView").id("a3l").findOne().bounds();
+        click(ttRedPacket.centerX(), ttRedPacket.centerY());
+        operationRandomTime();
+        getGold = className("android.widget.Image").text("treasure-box-enable-1.da338c08").findOne().parent().parent().bounds();
+        click(getGold.centerX(), getGold.centerY());
+        operationRandomTime();
+        if (text("看完视频再领").exists()) {
+            var lookADBounds = text("看完视频再领").findOne().bounds();
+            click(lookADBounds.centerX(), lookADBounds.centerY());
+        };
+
+        sleep(45000);
+
+        if (className("android.view.View").desc("关闭").exists()) {
+            var closeBounds = className("android.view.View").desc("关闭").findOne().bounds();
+            click(closeBounds.centerX(), closeBounds.centerY());
+        };
+    };
+        sleep(5000);
+
+
+    launchApp("快手极速版");
+    //console.show();
+
+    operationRandomTime();
+
+    var adolescentModel = text("设置青少年模式");
+    var iKnow = text("我知道了");
+    if (adolescentModel.findOne(1000) != null) {
+        console.log("设置青少年模式");
+        sleep(1000);
+        iKnow.findOne().click();
+    };
+
+    operationRandomTime();
+    if (text("立即签到").exists()) {
+        text("立即签到").click();
+    };
+
+    operationRandomTime();
+    back();
+    //var goldEarnings = text("金币收益");
+
+    operationRandomTime();
+
+    //goBack();
+
+    //console.log("ready!");
+
+    var commentWord = new Array();
+    commentWord =
+        [
+            '你站在这别动，我去买几个橘子给你吧！',
+            '奥利给',
+            '奥利给，干就完事了！',
+            '666～',
+            '安排！',
+            '啾咪',
+            '是个狠人',
+            '爱了爱了',
+            '你这个糟老头子坏的很',
+            '我太难了',
+            '小朋友，你是否有很多问号???',
+            '这不是开往幼儿园的车',
+            '冲鸭',
+            '冲冲冲',
+            '好嗨哟',
+            '康康',
+            '骑着我亲爱的小摩托，它永远不会堵车',
+            '你品，你细品',
+            '有杠精网友吗？',
+            '我的杠精网友呢？',
+            '你怎么穿着品如的衣服',
+            '哎呀，真香',
+            '老司机带带我',
+            '确认过眼神',
+            '白嫖',
+            '扎心了，老铁',
+            '安排得明明白白',
+            '内容引起极度舒适',
+            '素质三连',
+            '可可爱爱',
+            '有内味了',
+            '不，你不想'
+        ];
+
+
+
+
+    operationRandomTime();
+
+    var execCount = random(60, 80);
+    for (var i = 0; i < execCount; ++i) {
+        forwardVideo();
+        //var back1 = className("android.view.View").indexInParent(0).depth(11).findOne().bounds();
+        //goBack();
+        videoCloseIcon();
+        operationRandomTime();
+        if (id("close").exists()) {
+            id("close").click()
+        };
+
+        c = random(1, 55);
+        if (c == 19) {
+            id("comment_button").click();
+            p = 0;
+            while (p++ < random(2, 10)) {
+                commentSwipe();
+                sleep(1000);
+            };
+
+            var keyWord = commentWord[Math.floor(Math.random() * commentWord.length)];
+
+            if (text("仅作者的好友可评论").exists()) {
+                id("photo_detail_panel_close").click();
+            } 
+            else if (text("发条有爱评论~").exists()) {
+                id("comment_editor_holder_text").click();
+                id("editor").setText(keyWord);
+                id("finish_button").click();
+                if (id("photo_detail_panel_close").exists()) {
+                    id("photo_detail_panel_close").click();
+                };
+                if (id("comment_header_close").exists()) {
+                    id("comment_header_close").click()
+                };
+            };
+ 
+            operationRandomTime();
+            //back();
+        };
+        // comment end.
+
+        operationRandomTime();
+        l = random(1, 99);
+        if (id("like_button").exists() && l == 66) {
+            id("like_button").click();
+        };
+
+        f = random(1, 100);
+        if (id("slide_play_right_follow_button") && f == 66) {
+            id("slide_play_right_follow_button").click();
+        };
+
+        j = random(1, 78)
+        sleep(1000);
+        if (j == 66) {
+            rollbackVideo();
+        };
+    };
+    //ks for loop end.
+
+    home();
+
+    perationRandomTime();
+
+    //var randomPoint = random(8,48);
+
+
+    //function operationRandomTime() {
+    //  sleep(random(3000, 5000))
+    //};
+
+    function videoRandomTime() {
+        sleep(random(7267, 12863))
+    };
+
+    function rollbackVideo() {
+        swipe(device.width / 2, device.height * (1 / 9), device.width / 2, device.height * (8 / 9), 150)
+        videoRandomTime();
+    };
+
+    function forwardVideo() {
+        swipe(device.width / 2, device.height * (8 / 9), device.width / 2, device.height * (1 / 9), 150)
+        videoRandomTime();
+    };
+
+    function commentSwipe() {
+        swipe(device.width / 1.6, device.height * (8 / 9), device.width / 1.7, device.height * (6 / 9), 150)
+    };
+
+
+    function videoCloseIcon() {
+        if (id("video_close_icon").exists()) {
+            id("video_close_icon").click();
+        };
+    };
+
+};
+
+function operationRandomTime() {
+    sleep(random(3000, 5000))
+};
