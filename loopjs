@@ -116,7 +116,7 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
 
     operationRandomTime();
 
-    var execCount = random(60, 80);
+    var execCount = random(30, 40);
     for (var i = 0; i < execCount; ++i) {
         forwardVideo();
         //var back1 = className("android.view.View").indexInParent(0).depth(11).findOne().bounds();
@@ -147,9 +147,9 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
                 id("finish_button").click();
                 if (id("photo_detail_panel_close").exists()) {
                     id("photo_detail_panel_close").click();
-                };
-                if (id("comment_header_close").exists()) {
-                    id("comment_header_close").click()
+                }
+                else{
+                    back();
                 };
             };
  
@@ -179,7 +179,7 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
 
     home();
 
-    perationRandomTime();
+    operationRandomTime();
 
     //var randomPoint = random(8,48);
 
