@@ -1,122 +1,145 @@
 
+
+
+
+//2021-01-10 Fixed click button X is not correct,replace by back();
+//           Add skip 新版本 hint. 
+
+//sleep(5000);
+
+if (!device.isScreenOn()) {
+    device.wakeUp();
+    //swipe(500, 1800, 500, 600, 500);
+};
+
+//sleep(random(41000, 89000));
+
 launchApp("快手极速版");
 //console.show();
 
 operationRandomTime();
 
 var adolescentModel = text("设置青少年模式");
-var iKnow =  text("我知道了");
-if(adolescentModel.findOne(1000) != null){
-            console.log("设置青少年模式");
-            sleep(1000);
-            iKnow.findOne().click();
-   
-        };
+var iKnow = text("我知道了");
+if (adolescentModel.findOne(1000) != null) {
+    console.log("设置青少年模式");
+    sleep(1000);
+    iKnow.findOne().click();
+};
 
 operationRandomTime();
 back();
 operationRandomTime();
-if(id("red_packet").exists()){
+
+
+if (text("点击打开图集").exists() || text("点击打开长图").exists()) {
+    swipe(500, 1800, 500, 300, 500);
+};
+
+if (id("red_packet").exists()) {
     redPacketBounds = className("android.widget.ImageView").depth(6).id("red_packet").findOne().bounds();
-    
-    click(redPacketBounds.centerX(),redPacketBounds.centerY()); 
+    click(redPacketBounds.centerX(), redPacketBounds.centerY());
     operationRandomTime();
-    if(text("立即签到").exists()){
+    if (text("立即签到").exists()) {
         text("立即签到").click();
     };
-    operationRandomTime();  
-    if(text("邀请好友赚更多").exists()){
+    operationRandomTime();
+    if (text("邀请好友赚更多").exists()) {
         back();
     };
-  
-    operationRandomTime(); 
-    if(text("开宝箱得金币").exists()){
+
+    operationRandomTime();
+    if (text("开宝箱得金币").exists()) {
         var openBoxGetGold = text("开宝箱得金币").findOne().bounds();
-        click(openBoxGetGold.centerX(),openBoxGetGold.centerY());
+        click(openBoxGetGold.centerX(), openBoxGetGold.centerY());
         operationRandomTime();
-        if(text("看精彩视频赚更多").exists()){
+        if (text("看精彩视频赚更多").exists()) {
             var watchTvGetMore = text("看精彩视频赚更多").findOne().bounds();
-            click(watchTvGetMore.centerX(),watchTvGetMore.centerY());
+            click(watchTvGetMore.centerX(), watchTvGetMore.centerY());
             sleep(35000);
-            id("video_close_icon").click(); 
+            //id("video_close_icon").click();
+            back();
             operationRandomTime();
         };
 
     }
 }
-else if(id("gold_egg_packet").exists() ){
+else if (id("gold_egg_packet").exists()) {
     goldEggPacket = className("android.widget.ImageView").depth(6).id("gold_egg_packet").findOne().bounds();
-    click(goldEggPacket.centerX(),goldEggPacket.centerY()); 
+    click(goldEggPacket.centerX(), goldEggPacket.centerY());
     operationRandomTime();
-    if(text("立即签到").exists()){
+    if (text("立即签到").exists()) {
         text("立即签到").click();
     };
     operationRandomTime();
-    back();
-    operationRandomTime(); 
-    if(text("开宝箱得金币").exists()){
+    if (text("邀请好友赚更多").exists()) {
+        back();
+    };
+    operationRandomTime();
+    if (text("开宝箱得金币").exists()) {
         var openBoxGetGold = text("开宝箱得金币").findOne().bounds();
-        click(openBoxGetGold.centerX(),openBoxGetGold.centerY());
+        click(openBoxGetGold.centerX(), openBoxGetGold.centerY());
         operationRandomTime();
-        if(text("看精彩视频赚更多").exists()){
+        if (text("看精彩视频赚更多").exists()) {
             var watchTvGetMore = text("看精彩视频赚更多").findOne().bounds();
-            click(watchTvGetMore.centerX(),watchTvGetMore.centerY());
+            click(watchTvGetMore.centerX(), watchTvGetMore.centerY());
             sleep(30000);
-            id("video_close_icon").click(); 
+            //id("video_close_icon").click();
+            back();
             operationRandomTime();
         };
 
     }
-};
-
-
-
-
-if(className("android.widget.Button").text("福利 领金币").exists()){
-    className("android.widget.Button").text("福利 领金币").click();
-    sleep(32000);
-    className("android.widget.ImageView").id("video_close_icon").click();
-    sleep(3000);
-};
-for (var f = 0;f<10;++f){
-if(className("android.widget.Button").text("福利").exists()){
-    className("android.widget.Button").text("福利").click();
-    sleep(32000);
-    className("android.widget.ImageView").id("video_close_icon").click();
-    sleep(3000);
-};
-};
+}
 
 
 
 
 
-
-for (var i = 0;i<10;++i)
-{   if(className("android.widget.Button").text("看直播").exists()){
-    if(i>0){
-        swipe(500,500,500,900,500);
-        swipe(500,500,500,900,500);
-    };
- 
-    className("android.widget.Button").text("看直播").findOnce(1).click();
+if (className("android.widget.Button").text("福利 领金币").exists()) {
+    className("android.widget.Button").text("福利 领金币").findOnce().click();
     sleep(35000);
-    if(className("android.widget.ImageView").id("live_close_place_holder").exists()){
-        var liveCloseIcon = className("android.widget.ImageView").id("live_close_place_holder").findOne().bounds();
-        click(liveCloseIcon.centerX(),liveCloseIcon.centerY());
+    //className("android.widget.ImageView").id("video_close_icon").click();
+    back();
+    sleep(3000);
+};
+for (var f = 0; f < 10; ++f) {
+    if (className("android.widget.Button").text("福利").exists()) {
+        className("android.widget.Button").text("福利").findOnce().click();
+        sleep(35000);
+        //className("android.widget.ImageView").id("video_close_icon").click();
+        back();
+        sleep(3000);
     };
-    if(className("android.widget.ImageView").id("live_close").exists()){
-        var liveCloseIcon1 = className("android.widget.ImageView").id("live_close").findOne().bounds();
-        click(liveCloseIcon1.centerX(),liveCloseIcon1.centerY());
-    };
-    sleep(2000);
-    if(text("退出").exists()){
-        text("退出").click();
+};
+
+
+
+
+
+
+for (var i = 0; i < 10; ++i) {
+    if (className("android.widget.Button").text("看直播").exists()) {
+        className("android.widget.Button").text("看直播").findOnce(1).click();
+        sleep(35000);
+        // if(className("android.widget.ImageView").id("live_close_place_holder").exists()){
+        //     var liveCloseIcon = className("android.widget.ImageView").id("live_close_place_holder").findOnce().bounds();
+        //     click(liveCloseIcon.centerX(),liveCloseIcon.centerY());
+        // };
+        // sleep(2000);
+        // if(className("android.widget.ImageView").id("live_close").exists()){
+        //     var liveCloseIcon1 = className("android.widget.ImageView").id("live_close").findOne().bounds();
+        //     click(liveCloseIcon1.centerX(),liveCloseIcon1.centerY());
+        // };
+        back();
         sleep(2000);
+        if (text("退出").exists()) {
+            text("退出").click();
+            sleep(2000);
+        };
     };
-};
-    
-};
+}
+
 
 
 
