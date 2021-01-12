@@ -8,9 +8,12 @@
 //sleep(5000);
 
 if (!device.isScreenOn()) {
-    device.wakeUp();
-    //swipe(500, 1800, 500, 600, 500);
+    sleep(1000);
+    device.wakeUpIfNeeded();
+    sleep(1000);
+    swipe(500,1800,500,600,500);
 };
+
 
 //sleep(random(41000, 89000));
 
@@ -93,31 +96,6 @@ else if (id("gold_egg_packet").exists()) {
 }
 
 
-
-
-
-if (className("android.widget.Button").text("福利 领金币").exists()) {
-    className("android.widget.Button").text("福利 领金币").findOnce().click();
-    sleep(35000);
-    //className("android.widget.ImageView").id("video_close_icon").click();
-    back();
-    sleep(3000);
-};
-for (var f = 0; f < 10; ++f) {
-    if (className("android.widget.Button").text("福利").exists()) {
-        className("android.widget.Button").text("福利").findOnce().click();
-        sleep(35000);
-        //className("android.widget.ImageView").id("video_close_icon").click();
-        back();
-        sleep(3000);
-    };
-};
-
-
-
-
-
-
 for (var i = 0; i < 10; ++i) {
     if (className("android.widget.Button").text("看直播").exists()) {
         className("android.widget.Button").text("看直播").findOnce(1).click();
@@ -139,6 +117,24 @@ for (var i = 0; i < 10; ++i) {
         };
     };
 }
+
+
+if (className("android.widget.Button").text("福利 领金币").exists()) {
+    className("android.widget.Button").text("福利 领金币").findOnce().click();
+    sleep(35000);
+    //className("android.widget.ImageView").id("video_close_icon").click();
+    back();
+    sleep(3000);
+};
+for (var f = 0; f < 9; ++f) {
+    if (className("android.widget.Button").text("福利").exists()) {
+        className("android.widget.Button").text("福利").findOnce().click();
+        sleep(35000);
+        //className("android.widget.ImageView").id("video_close_icon").click();
+        back();
+        sleep(3000);
+    };
+};
 
 
 
