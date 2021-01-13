@@ -113,6 +113,57 @@ stopApp("快手极速版");
 
 
 
+//---------------------------------------------------------------------抖音极速版-------------------------------开始----------------------------------------------------
+
+operationRandomTime();
+operationRandomTime();
+launchApp("抖音极速版");
+operationRandomTime();
+
+var dymodel = text("进入儿童/青少年模式");
+var dyiKnow = text("我知道了");
+if (dymodel.findOne(1000) != null) {
+    console.log("进入儿童/青少年模式");
+    sleep(1000);
+    dyiKnow.findOne().click();
+};
+
+operationRandomTime();
+if(className("android.view.View").text("点击领取").exists()){
+    className("android.view.View").text("点击领取").click();  
+    operationRandomTime();
+    id("bcx").click();
+};
+operationRandomTime();
+
+if(textContains("立即签到").exists()){
+    textContains("立即签到").findOne(2000).click();
+    //text(/(.*立.*|.*即.*|.*签.*|.*到.*)/).findOne(2000).click();
+    operationRandomTime();
+    id("bcx").click();
+};
+
+operationRandomTime();
+dyFunOpenBox();
+
+
+
+
+
+function dyFunOpenBox(){
+    if(className("android.view.View").text("开宝箱得金币").exists()){
+        var dyOpenBox = className("android.view.View").text("开宝箱得金币").findOnce().bounds();
+        click(dyOpenBox.centerX(),dyOpenBox.centerY());
+        operationRandomTime();
+        // if(className("android.view.View").text("看广告视频再赚").exists()){
+        //     var dyad = className("android.view.View").text("看广告视频再赚").findOnce().bounds();
+        //     click(dyad.centerX(),dyad.centerY());
+        // };
+        // operationRandomTime();
+        click(550,1590); //Play
+    }
+};
+
 
 
 
