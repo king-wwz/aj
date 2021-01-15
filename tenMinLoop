@@ -1,20 +1,33 @@
 //2021-01-10 Fixed click button X is not correct,replace by back();
 //           Add skip 新版本 hint. 
 
-//sleep(5000);
+//2021-01-16 Add try{}....catch {}
+//Add timers
+//Add console.show();
+//Add new app tasks
+//Modify auto wakeUp
 
 if (!device.isScreenOn()) {
-    sleep(1000);
     device.wakeUpIfNeeded();
-    sleep(1000);
+    operationRandomTime();
+    device.wakeUp()
+    operationRandomTime();
     swipe(500, 1800, 500, 600, 500);
+    operationRandomTime();
 };
 
-
+device.setBrightness(10);
+operationRandomTime();
+console.show();
+var delayRun = random(70000,280000);
+currentTime = new Date();
+sleep(delayRun);
+console.log(currentTime);
+console.log(delayRun);
 //---------------------------------------------------------------------------------快手极速版-----------------开始-------------------------------------------------------------------
 
 launchApp("快手极速版");
-//console.show();
+console.show();
 
 operationRandomTime();
 
@@ -32,79 +45,109 @@ operationRandomTime();
 
 
 //if (text("点击打开图集").exists() || text("点击打开长图").exists()) {
-    //swipe(500, 1800, 500, 300, 500);
+//swipe(500, 1800, 500, 300, 500);
 //};
 
-if (id("red_packet").exists()) {
-    redPacketBounds = className("android.widget.ImageView").depth(6).id("red_packet").findOne().bounds();
-    click(redPacketBounds.centerX(), redPacketBounds.centerY());
-    operationRandomTime();
-    if (text("立即签到").exists()) {
-        text("立即签到").click();
-    };
-    operationRandomTime();
-    if (text("邀请好友赚更多").exists()) {
-        back();
-    };
 
-    operationRandomTime();
-    funOpenBoxGetGold();
-}
-else if (id("gold_egg_packet").exists()) {
-    goldEggPacket = className("android.widget.ImageView").depth(6).id("gold_egg_packet").findOne().bounds();
-    click(goldEggPacket.centerX(), goldEggPacket.centerY());
-    operationRandomTime();
-    if (text("立即签到").exists()) {
-        text("立即签到").click();
-    };
-    operationRandomTime();
-    if (text("邀请好友赚更多").exists()) {
-        back();
-    };
-    operationRandomTime();
-    funOpenBoxGetGold();
-}
-
-
-for (var i = 0; i < 10; ++i) {
-    if (className("android.widget.Button").text("看直播").exists()) {
-        className("android.widget.Button").text("看直播").findOnce(1).click();
-        sleep(35000);
-        // if(className("android.widget.ImageView").id("live_close_place_holder").exists()){
-        //     var liveCloseIcon = className("android.widget.ImageView").id("live_close_place_holder").findOnce().bounds();
-        //     click(liveCloseIcon.centerX(),liveCloseIcon.centerY());
-        // };
-        // sleep(2000);
-        // if(className("android.widget.ImageView").id("live_close").exists()){
-        //     var liveCloseIcon1 = className("android.widget.ImageView").id("live_close").findOne().bounds();
-        //     click(liveCloseIcon1.centerX(),liveCloseIcon1.centerY());
-        // };
-        back();
-        sleep(2000);
-        if (text("退出").exists()) {
-            text("退出").click();
-            sleep(2000);
+try {
+    if (id("red_packet").exists()) {
+        redPacketBounds = className("android.widget.ImageView").depth(6).id("red_packet").findOnce().bounds();
+        click(redPacketBounds.centerX(), redPacketBounds.centerY());
+        operationRandomTime();
+        if (text("立即签到").exists()) {
+            text("立即签到").click();
         };
-    };
-}
+        operationRandomTime();
+        if (text("邀请好友赚更多").exists()) {
+            back();
+        };
+        operationRandomTime();
+        funOpenBoxGetGold();
+    }
+    else if (id("gold_egg_packet").exists()) {
+        goldEggPacket = className("android.widget.ImageView").depth(6).id("gold_egg_packet").findOnce().bounds();
+        click(goldEggPacket.centerX(), goldEggPacket.centerY());
+        operationRandomTime();
+        if (text("立即签到").exists()) {
+            text("立即签到").click();
+        };
+        operationRandomTime();
+        if (text("邀请好友赚更多").exists()) {
+            back();
+        };
+        operationRandomTime();
+        funOpenBoxGetGold();
+    }
+    else {
+        console.log("Can't find red packet button!");
+    }
+} //try end
+catch (error) {
+    console.error(error);
+};//catch end
 
 
-if (className("android.widget.Button").text("福利 领金币").exists()) {
-    className("android.widget.Button").text("福利 领金币").findOnce().click();
-    sleep(35000);
-    //className("android.widget.ImageView").id("video_close_icon").click();
-    back();
-    sleep(3000);
-};
-for (var f = 0; f < 9; ++f) {
-    if (className("android.widget.Button").text("福利").exists()) {
-        className("android.widget.Button").text("福利").findOnce().click();
+
+try {
+    for (var i = 0; i < 10; ++i) {
+        if (className("android.widget.Button").text("看直播").exists()) {
+            className("android.widget.Button").text("看直播").findOnce(1).click();
+            sleep(35000);
+            // if(className("android.widget.ImageView").id("live_close_place_holder").exists()){
+            //     var liveCloseIcon = className("android.widget.ImageView").id("live_close_place_holder").findOnce().bounds();
+            //     click(liveCloseIcon.centerX(),liveCloseIcon.centerY());
+            // };
+            // sleep(2000);
+            // if(className("android.widget.ImageView").id("live_close").exists()){
+            //     var liveCloseIcon1 = className("android.widget.ImageView").id("live_close").findOne().bounds();
+            //     click(liveCloseIcon1.centerX(),liveCloseIcon1.centerY());
+            // };
+            back();
+            sleep(2000);
+            if (text("退出").exists()) {
+                text("退出").click();
+                sleep(2000);
+            };
+        }
+        else {
+            console.log("Can't find watch live button!");
+        };
+    }
+}// end try
+catch (error) {
+    console.error(error);
+}//end catch
+
+
+
+try {
+    if (className("android.widget.Button").text("福利 领金币").exists()) {
+        className("android.widget.Button").text("福利 领金币").findOnce().click();
         sleep(35000);
         //className("android.widget.ImageView").id("video_close_icon").click();
         back();
         sleep(3000);
+    }
+    else {
+        console.log("Can't find welfare and get gold button!");
     };
+    for (var f = 0; f < 9; ++f) {
+        if (className("android.widget.Button").text("福利").exists()) {
+            className("android.widget.Button").text("福利").findOnce().click();
+            sleep(35000);
+            //className("android.widget.ImageView").id("video_close_icon").click();
+            back();
+            sleep(3000);
+        }
+        else {
+            console.log("Can't find welfare button!");
+        };
+    };
+}// end try
+catch (error) {
+    console.error(error);
 };
+
 
 operationRandomTime();
 stopApp("快手极速版");
@@ -129,14 +172,14 @@ if (dymodel.findOne(1000) != null) {
 };
 
 operationRandomTime();
-if(className("android.view.View").text("点击领取").exists()){
-    className("android.view.View").text("点击领取").click();  
+if (className("android.view.View").text("点击领取").exists()) {
+    className("android.view.View").text("点击领取").click();
     operationRandomTime();
     id("bcx").click();
 };
 operationRandomTime();
 
-if(textContains("立即签到").exists()){
+if (textContains("立即签到").exists()) {
     textContains("立即签到").findOne(2000).click();
     //text(/(.*立.*|.*即.*|.*签.*|.*到.*)/).findOne(2000).click();
     operationRandomTime();
@@ -150,17 +193,17 @@ dyFunOpenBox();
 
 
 
-function dyFunOpenBox(){
-    if(className("android.view.View").text("开宝箱得金币").exists()){
+function dyFunOpenBox() {
+    if (className("android.view.View").text("开宝箱得金币").exists()) {
         var dyOpenBox = className("android.view.View").text("开宝箱得金币").findOnce().bounds();
-        click(dyOpenBox.centerX(),dyOpenBox.centerY());
+        click(dyOpenBox.centerX(), dyOpenBox.centerY());
         operationRandomTime();
         // if(className("android.view.View").text("看广告视频再赚").exists()){
         //     var dyad = className("android.view.View").text("看广告视频再赚").findOnce().bounds();
         //     click(dyad.centerX(),dyad.centerY());
         // };
         // operationRandomTime();
-        click(550,1590); //Play
+        click(550, 1590); //Play
     }
 };
 
@@ -195,20 +238,20 @@ function funOpenBoxGetGold() {
 
 function stopApp(packageName) {
     var name = getPackageName(packageName);
-    if(!name){
-        if(getAppName(packageName)){
+    if (!name) {
+        if (getAppName(packageName)) {
             name = packageName;
-        }else{
+        } else {
             return false;
         }
     }
     app.openAppSetting(name);
-    text(app.getAppName(name)).waitFor();  
+    text(app.getAppName(name)).waitFor();
     let is_sure = textMatches(/(.*强.*|.*停.*|.*结.*|.*行.*)/).findOne();
     if (is_sure.enabled()) {
         textMatches(/(.*强.*|.*停.*|.*结.*|.*行.*)/).findOne().click();
         sleep(1000);
-        click(800,1800);
+        click(800, 1800);
         log(app.getAppName(name) + "应用已被关闭");
         sleep(1000);
         back();
