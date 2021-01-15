@@ -23,7 +23,7 @@ var delayRun = random(70000,280000);
 currentTime = new Date();
 sleep(delayRun);
 console.log(currentTime);
-console.log(delayRun);
+console.log('delay time is: '+delayRun);
 //---------------------------------------------------------------------------------快手极速版-----------------开始-------------------------------------------------------------------
 
 launchApp("快手极速版");
@@ -92,6 +92,7 @@ try {
     for (var i = 0; i < 10; ++i) {
         if (className("android.widget.Button").text("看直播").exists()) {
             className("android.widget.Button").text("看直播").findOnce(1).click();
+            console.log('The: '+i +'time watch live');
             sleep(35000);
             // if(className("android.widget.ImageView").id("live_close_place_holder").exists()){
             //     var liveCloseIcon = className("android.widget.ImageView").id("live_close_place_holder").findOnce().bounds();
@@ -123,6 +124,7 @@ catch (error) {
 try {
     if (className("android.widget.Button").text("福利 领金币").exists()) {
         className("android.widget.Button").text("福利 领金币").findOnce().click();
+        console.log('getting welfware and gold');
         sleep(35000);
         //className("android.widget.ImageView").id("video_close_icon").click();
         back();
@@ -134,6 +136,7 @@ try {
     for (var f = 0; f < 9; ++f) {
         if (className("android.widget.Button").text("福利").exists()) {
             className("android.widget.Button").text("福利").findOnce().click();
+            console.log('The: '+i +'time get welfware');
             sleep(35000);
             //className("android.widget.ImageView").id("video_close_icon").click();
             back();
@@ -151,6 +154,7 @@ catch (error) {
 
 operationRandomTime();
 stopApp("快手极速版");
+console.log('stoped 快手极速版');
 
 //--------------------------------------------------------------------快手极速版---------------------------------结束----------------------------------------------------
 
