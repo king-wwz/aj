@@ -7,6 +7,8 @@
 //Add new app tasks
 //Modify auto wakeUp
 
+auto.waitFor("fast"); 
+
 if (!device.isScreenOn()) {
     device.wakeUpIfNeeded();
     operationRandomTime();
@@ -24,6 +26,8 @@ currentTime = new Date();
 sleep(delayRun);
 console.log(currentTime);
 console.log('delay time is: '+delayRun);
+//var now_hours = currentTime.getHours()
+
 //---------------------------------------------------------------------------------快手极速版-----------------开始-------------------------------------------------------------------
 
 launchApp("快手极速版");
@@ -93,7 +97,7 @@ try {
         if (className("android.widget.Button").text("看直播").exists()) {
             className("android.widget.Button").text("看直播").findOnce(1).click();
             console.log('The: '+i +'time watch live');
-            sleep(35000);
+            sleep(random(35621,41023));
             // if(className("android.widget.ImageView").id("live_close_place_holder").exists()){
             //     var liveCloseIcon = className("android.widget.ImageView").id("live_close_place_holder").findOnce().bounds();
             //     click(liveCloseIcon.centerX(),liveCloseIcon.centerY());
@@ -104,10 +108,10 @@ try {
             //     click(liveCloseIcon1.centerX(),liveCloseIcon1.centerY());
             // };
             back();
-            sleep(2000);
+            operationRandomTime();
             if (text("退出").exists()) {
                 text("退出").click();
-                sleep(2000);
+                operationRandomTime();
             };
         }
         else {
@@ -125,10 +129,10 @@ try {
     if (className("android.widget.Button").text("福利 领金币").exists()) {
         className("android.widget.Button").text("福利 领金币").findOnce().click();
         console.log('getting welfware and gold');
-        sleep(35000);
+        sleep(random(35621,41023));
         //className("android.widget.ImageView").id("video_close_icon").click();
         back();
-        sleep(3000);
+        operationRandomTime();
     }
     else {
         console.log("Can't find welfare and get gold button!");
@@ -137,10 +141,10 @@ try {
         if (className("android.widget.Button").text("福利").exists()) {
             className("android.widget.Button").text("福利").findOnce().click();
             console.log('The: '+i +'time get welfware');
-            sleep(35000);
+            sleep(random(35621,41023));
             //className("android.widget.ImageView").id("video_close_icon").click();
             back();
-            sleep(3000);
+            operationRandomTime();
         }
         else {
             console.log("Can't find welfare button!");
@@ -194,6 +198,24 @@ operationRandomTime();
 dyFunOpenBox();
 
 
+operationRandomTime();
+stopApp("抖音极速版");
+console.log('stoped 抖音极速版');
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------stop scripts----------------------------------------------------------
+operationRandomTime();
+home();
+operationRandomTime();
+exit();
 
 
 
