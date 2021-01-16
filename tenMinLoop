@@ -21,11 +21,12 @@ if (!device.isScreenOn()) {
 device.setBrightness(10);
 operationRandomTime();
 console.show();
-var delayRun = random(70000,280000);
+var delayRun = random(7000,12000);
+console.log('delay time is: '+delayRun);
 currentTime = new Date();
 sleep(delayRun);
 console.log(currentTime);
-console.log('delay time is: '+delayRun);
+
 //var now_hours = currentTime.getHours()
 
 //---------------------------------------------------------------------------------快手极速版-----------------开始-------------------------------------------------------------------
@@ -54,8 +55,8 @@ operationRandomTime();
 
 
 try {
-    if (id("red_packet").exists()) {
-        redPacketBounds = className("android.widget.ImageView").depth(6).id("red_packet").findOnce().bounds();
+    if (id("redFloat").exists()) {
+        redPacketBounds = id("redFloat").className("android.widget.FrameLayout").findOne().bounds();
         click(redPacketBounds.centerX(), redPacketBounds.centerY());
         operationRandomTime();
         if (text("立即签到").exists()) {
@@ -66,18 +67,8 @@ try {
             back();
         };
         operationRandomTime();
-        funOpenBoxGetGold();
-    }
-    else if (id("gold_egg_packet").exists()) {
-        goldEggPacket = className("android.widget.ImageView").depth(6).id("gold_egg_packet").findOnce().bounds();
-        click(goldEggPacket.centerX(), goldEggPacket.centerY());
-        operationRandomTime();
-        if (text("立即签到").exists()) {
-            text("立即签到").click();
-        };
-        operationRandomTime();
-        if (text("邀请好友赚更多").exists()) {
-            back();
+        if(text("立即开启").exists()){
+            id("a7y").click();
         };
         operationRandomTime();
         funOpenBoxGetGold();
@@ -96,7 +87,11 @@ try {
     for (var i = 0; i < 10; ++i) {
         if (className("android.widget.Button").text("看直播").exists()) {
             className("android.widget.Button").text("看直播").findOnce(1).click();
-            console.log('The: '+i +'time watch live');
+            console.log('NO '+i +' time watch live!');
+            operationRandomTime();
+            if(text("以后再说").exists()){
+                text("以后再说").click();
+            }
             sleep(random(35621,41023));
             // if(className("android.widget.ImageView").id("live_close_place_holder").exists()){
             //     var liveCloseIcon = className("android.widget.ImageView").id("live_close_place_holder").findOnce().bounds();
@@ -127,7 +122,7 @@ catch (error) {
 
 try {
     if (className("android.widget.Button").text("福利 领金币").exists()) {
-        className("android.widget.Button").text("福利 领金币").findOnce().click();
+        className("android.widget.Button").text("福利 领金币").findOne().click();
         console.log('getting welfware and gold');
         sleep(random(35621,41023));
         //className("android.widget.ImageView").id("video_close_icon").click();
@@ -137,10 +132,10 @@ try {
     else {
         console.log("Can't find welfare and get gold button!");
     };
-    for (var f = 0; f < 9; ++f) {
+    for (var f = 0; f < 10; ++f) {
         if (className("android.widget.Button").text("福利").exists()) {
             className("android.widget.Button").text("福利").findOnce().click();
-            console.log('The: '+i +'time get welfware');
+            console.log('The: '+f +' time get welfware');
             sleep(random(35621,41023));
             //className("android.widget.ImageView").id("video_close_icon").click();
             back();
@@ -165,7 +160,7 @@ console.log('stoped 快手极速版');
 
 
 //---------------------------------------------------------------------抖音极速版-------------------------------开始----------------------------------------------------
-
+/*
 operationRandomTime();
 operationRandomTime();
 launchApp("抖音极速版");
@@ -203,7 +198,7 @@ stopApp("抖音极速版");
 console.log('stoped 抖音极速版');
 
 
-
+*/
 
 
 
