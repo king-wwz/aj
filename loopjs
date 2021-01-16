@@ -1,12 +1,30 @@
-var ttExecCount = 30
-for (var tti = 0; tti < ttExecCount; ++tti) {
-    if (!device.isScreenOn()) {
-        device.wakeup();
-        sleep(1000);
-    };
+//2021-01-11 comment cancel. because platform have sensitive information news and random comment cause bad effect.
 
+
+// operationRandomTime();
+// operationRandomTime();
+// operationRandomTime();
+
+
+
+if (!device.isScreenOn()) {
+    sleep(1000);
+    device.wakeUpIfNeeded();
+    sleep(1000);
+    device.wakeUp();
+    sleep(1000);
+    swipe(500, 1800, 500, 600, 500);
+};
+
+//console.show();
+var allExecCount = 15
+for (var tti = 0; tti < allExecCount; ++tti) {
+    console.log("allExecute:");
     launchApp("今日头条极速版");
     operationRandomTime();
+    if (text("以后再说").exists()) {
+        text("以后再说").click();
+    };
 
     if (id("a4x").exists()) {
         id("a4x").click();
@@ -15,35 +33,93 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
         back();
     };
 
-    sleep(2000);
+    operationRandomTime();
 
-    if (!className("android.widget.ImageView").id("a3l").exists()) {
+    if (!className("android.widget.TextView").text("阅读赚金币").exists()) {
         back();
     };
 
-    sleep(2000);
     operationRandomTime();
 
-    if (className("android.widget.ImageView").id("a3l").exists()) {
-        var ttRedPacket = className("android.widget.ImageView").id("a3l").findOne().bounds();
+    if (className("android.widget.TextView").text("阅读赚金币").exists()) {
+        var ttRedPacket = className("android.widget.TextView").text("阅读赚金币").findOnce().bounds();
         click(ttRedPacket.centerX(), ttRedPacket.centerY());
         operationRandomTime();
-        getGold = className("android.widget.Image").text("treasure-box-enable-1.da338c08").findOne().parent().parent().bounds();
-        click(getGold.centerX(), getGold.centerY());
-        operationRandomTime();
-        if (text("看完视频再领").exists()) {
-            var lookADBounds = text("看完视频再领").findOne().bounds();
-            click(lookADBounds.centerX(), lookADBounds.centerY());
+
+
+        //only hua wei p10 getGold 
+        if(className("android.widget.Image").text("treasure-box-enable-1.da338c08").exists()){
+            getGold = className("android.widget.Image").text("treasure-box-enable-1.da338c08").findOnce().parent().parent().bounds();
+            click(getGold.centerX(), getGold.centerY());
+            operationRandomTime();
+            afterWatchGetGold();
         };
-
-        sleep(45000);
-
-        if (className("android.view.View").desc("关闭").exists()) {
-            var closeBounds = className("android.view.View").desc("关闭").findOne().bounds();
-            click(closeBounds.centerX(), closeBounds.centerY());
+        
+        // if (className("android.view.View").desc("关闭").exists()) {
+        //     var closeBounds = className("android.view.View").desc("关闭").findOne().bounds();
+        //     click(closeBounds.centerX(), closeBounds.centerY());
+        // };
+        //getGold = className("android.widget.Image").text("开宝箱得金币").findOne().bounds();
+        //click(getGold.centerX(), getGold.centerY());//
+        if (className("android.widget.Image").text("走路赚钱").exists()) {
+            className("android.widget.Image").text("走路赚钱").findOnce().parent().click();
+        sleep(3000);
+        
+        if (textContains("领取").exists()) {
+            textContains("领取").click();
+            sleep(3000);
+            if (text("看视频再领").exists()) {
+            watchAgainGet();
+            
+        }else{
+            back();
+        };
+        };
+        }
+        sleep(3000);
+    
+        if (className("android.widget.Image").text("吃饭补贴").exists()) {
+            className("android.widget.Image").text("吃饭补贴").findOnce().parent().click();
+            sleep(3000);
+            if (textContains("领取").exists()) {
+                textContains("领取").click();
+                sleep(3000);
+                if (text("看视频再领").exists()) {
+                    watchAgainGet();
+                    
+                }else{
+                    back();
+                };
+            }
+        };
+    
+    
+        sleep(3000);
+        if (text("签到").exists()) {
+            text("签到").findOnce().click();
+            sleep(3000);
+            watchAgainGet();
+        };
+    
+    
+        if (text("逛商品赚金币").exists()) {
+            text("逛商品赚金币").findOnce().click();
         };
     };
-        sleep(5000);
+    
+
+
+
+    function watchAgainGet() {
+        if (text("看视频再领").exists()) {
+            var lookADBounds = text("看视频再领").findOnce().bounds();
+            click(lookADBounds.centerX(), lookADBounds.centerY());
+            sleep(40000);
+            back();
+        };
+    };
+    home();
+    sleep(5000);
 
 
     launchApp("快手极速版");
@@ -74,7 +150,7 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
 
     //console.log("ready!");
 
-    var commentWord = new Array();
+    /*var commentWord = new Array();
     commentWord =
         [
             '你站在这别动，我去买几个橘子给你吧！',
@@ -111,7 +187,7 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
             '不，你不想'
         ];
 
-
+*/
 
 
     operationRandomTime();
@@ -127,35 +203,37 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
             id("close").click()
         };
 
-        c = random(1, 55);
-        if (c == 19) {
-            id("comment_button").click();
-            p = 0;
-            while (p++ < random(2, 10)) {
-                commentSwipe();
-                sleep(1000);
-            };
+        /* c = random(1, 55);
+         if (c == 19) {
+             id("comment_button").click();
+             p = 0;
+             while (p++ < random(2, 10)) {
+                 commentSwipe();
+                 sleep(1000);
+             };
+ */
+        //var keyWord = commentWord[Math.floor(Math.random() * commentWord.length)];
 
-            var keyWord = commentWord[Math.floor(Math.random() * commentWord.length)];
+        //if (text("仅作者的好友可评论").exists()) {
+        //   id("photo_detail_panel_close").click();
+        //} 
+        // else if (text("发条有爱评论~").exists()) {
+        //   id("comment_editor_holder_text").click();
+        // sleep(1000);
+        //id("editor").setText(keyWord);
+        //sleep(1000);
+        //id("finish_button").click();
+        //if (id("photo_detail_panel_close").exists()) {
+        //  id("photo_detail_panel_close").click();
+        // }
+        //else{
+        //  back();
+        //};
+        //};
 
-            if (text("仅作者的好友可评论").exists()) {
-                id("photo_detail_panel_close").click();
-            } 
-            else if (text("发条有爱评论~").exists()) {
-                id("comment_editor_holder_text").click();
-                id("editor").setText(keyWord);
-                id("finish_button").click();
-                if (id("photo_detail_panel_close").exists()) {
-                    id("photo_detail_panel_close").click();
-                }
-                else{
-                    back();
-                };
-            };
- 
-            operationRandomTime();
-            //back();
-        };
+        //operationRandomTime();
+        //back();
+        //};
         // comment end.
 
         operationRandomTime();
@@ -163,12 +241,12 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
         if (id("like_button").exists() && l == 66) {
             id("like_button").click();
         };
-
+        operationRandomTime();
         f = random(1, 100);
         if (id("slide_play_right_follow_button") && f == 66) {
             id("slide_play_right_follow_button").click();
         };
-
+        operationRandomTime();
         j = random(1, 78)
         sleep(1000);
         if (j == 66) {
@@ -188,7 +266,7 @@ for (var tti = 0; tti < ttExecCount; ++tti) {
     //  sleep(random(3000, 5000))
     //};
 
-    
+
 
 };
 
@@ -203,7 +281,11 @@ function rollbackVideo() {
 };
 
 function forwardVideo() {
-    swipe(device.width / 2, device.height * (8 / 9), device.width / 2, device.height * (1 / 9), 150)
+    if (text("点击打开图集").exists() || text("点击打开长图").exists()) {
+        swipe(device.width / 2, device.height * (8 / 9), device.width / 2, device.height * (1 / 9), 150)
+    } else {
+        swipe(device.width / 2, device.height * (8 / 9), device.width / 2, device.height * (1 / 9), 150)
+    };
     videoRandomTime();
 };
 
@@ -216,8 +298,21 @@ function videoCloseIcon() {
     if (id("video_close_icon").exists()) {
         id("video_close_icon").click();
     };
+    if (id("close").exists()) {
+        id("close").click();
+    };
 };
 
 function operationRandomTime() {
     sleep(random(3000, 5000))
+};
+
+
+function afterWatchGetGold() {
+    if (text("看完视频再领").exists()) {
+        var lookADBounds = text("看完视频再领").findOne().bounds();
+        click(lookADBounds.centerX(), lookADBounds.centerY());
+        //back();
+    };
+    sleep(random(43904, 46734));
 };
