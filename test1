@@ -1,0 +1,131 @@
+launchApp("抖音极速版");
+sleep(random(45078,53210));
+var dymodel = text("进入儿童/青少年模式");
+var dyiKnow = text("我知道了");
+if (dymodel.findOne(1000) != null) {
+    console.log("进入儿童/青少年模式");
+    sleep(1000);
+    dyiKnow.findOne().click();
+};
+sleep(3000);
+
+if(id("u6").exists()){
+    back();
+};
+sleep(3000);
+if(className("android.widget.RelativeLayout").id("be4").exists()){
+    className("android.widget.RelativeLayout").id("be4").click();
+};
+
+sleep(3000);
+if(textContains("立即签到").exists()){
+    textContains("立即签到").click();
+    sleep(1000);
+    click(541,1631);
+};
+
+if(text("查看收益").exists()){
+    back();/////wait for 
+};
+sleep(3000);
+
+
+var t = text("开宝箱得金币").findOnce().bounds();
+click(t.centerX(),t.centerY());
+sleep(3000);
+click(536,1389);
+
+
+
+sleep(3000);
+//(30,300,1000,1500);
+for (i=0;i<10;++i){
+    if(text("逛街赚钱").className("android.view.View").exists()){
+        var dyShopping = text("逛街赚钱").className("android.view.View").findOnce().bounds();
+        if(dyShopping.centerY()>300 && dyShopping.centerY()<1500){
+            click(dyShopping.centerX(),dyShopping.centerY());
+            sleep(10000);
+            swipe(500, 1600, 500, 1000, 500);
+            sleep(5000);
+            swipe(500, 1600, 500, 1000, 500);
+            sleep(5000);
+            swipe(500, 1600, 500, 1000, 500);
+            sleep(5000);
+            swipe(500, 1600, 500, 1000, 500);
+            sleep(5000);
+            back();
+            break;
+        }else{
+        swipe(500, 1600, 500, 900, 500);
+        sleep(5000);
+        };
+}
+else{
+    console.log("can't find dy shopping button");
+};
+
+};
+
+
+
+sleep(3000);
+//(30,300,1000,1500);
+for (i=0;i<10;++i){
+    if(text("签到").className("android.view.View").exists()){
+        var dySignIn = text("签到").className("android.view.View").findOnce().bounds();
+        console.log(dySignIn.centerX());
+        console.log(dySignIn.centerY());
+        if(dySignIn.centerY()>300 && dySignIn.centerY()<1500){
+            click(dySignIn.centerX(),dySignIn.centerY());
+            sleep(3000);
+            click(555,1641);
+            
+        }else{
+        swipe(500, 1600, 500, 900, 500);
+        sleep(5000);
+        };
+}
+else{
+    console.log("can't find dy sign in button")
+};
+
+};
+
+
+launchApp("点淘");
+sleep(3000);
+back();
+sleep(3000);
+console.show();
+if(className("android.widget.FrameLayout").id("gold_countdown_container").exists()){
+    var tbGold = className("android.widget.FrameLayout").id("gold_countdown_container").findOnce().bounds();
+    console.log(tbGold);
+   // console.log(tbGold.centerY());
+    click(tbGold.centerX(),tbGold.centerY());
+
+};
+sleep(3000);
+if(className("android.widget.Image").text("TB1frLSOpP7gk0jSZFjXXc5aXXa-146-54").exists()){
+    var tbSignIn = className("android.widget.Image").text("TB1frLSOpP7gk0jSZFjXXc5aXXa-146-54").findOnce().bounds();
+    click(tbSignIn.centerX(),tbSignIn.centerY());
+};
+
+sleep(3000);
+if(text("领取").className("android.view.View").exists()){
+   var tbEgg = text("领取").className("android.view.View").findOnce().bounds();
+   click(tbEgg.centerX(),tbEgg.centerY());
+   sleep(3000);
+    click(563,1703);
+};
+sleep(3000);
+
+back();
+sleep(3000);
+console.show();
+var tbVideoCount = random(88,120);
+if(className("android.widget.FrameLayout").id("gold_countdown_container").exists()){
+    for (tbvideoi=0;tbvideoi<tbVideoCount;++tbvideoi){
+        swipe(800,1400,800,50,500);
+        sleep(6000);
+    };
+};
